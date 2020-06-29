@@ -1,19 +1,11 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import recipesFile from "../recipedb.json";
-import placeholderImage from "../placeholder-img.png";
+import Ingredient from "./Ingredient";
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 200,
-    maxHeight: 200,
-  },
-  flexcontainer: {
+  flexContainer: {
     height: "400px",
     display: "flex",
     "flex-wrap": "wrap",
@@ -21,21 +13,16 @@ const useStyles = makeStyles({
   },
 });
 
-const IngredientList = () => {
+const IngredientList = (props) => {
   const classes = useStyles();
   const ingredientMappedList = recipesFile.map((recipe) => (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia component="img" image={placeholderImage} />
-        <CardContent>
-          <Typography gutterBottom variant="h6">
-            {recipe.Ingredient01}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <Ingredient ingredientName={recipe.Ingredient01} onClick={props.onClick} />
   ));
-  return <div className={classes.flexcontainer}>{ingredientMappedList}</div>;
+  return <div className={classes.flexContainer}>{ingredientMappedList}</div>;
+};
+
+IngredientList.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
 
 export default IngredientList;
