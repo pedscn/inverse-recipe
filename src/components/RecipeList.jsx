@@ -4,7 +4,7 @@ import Recipe from "./Recipe";
 // eslint-disable-next-line no-unused-vars
 import recipecache from "../reccipecache.json";
 // eslint-disable-next-line no-unused-vars
-import apiKey from "../config";
+import { apiKey2 } from "../config";
 
 const RecipeList = (props) => {
   // eslint-disable-next-line no-unused-vars
@@ -12,16 +12,16 @@ const RecipeList = (props) => {
 
   // eslint-disable-next-line no-unused-vars
   const { selectedIngredients } = props;
+  // Empty array argument needed to avoid useEffect being called infinitely.
   // React.useEffect(() => {
-  //   fetch(
-  //     `https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples&number=2&apiKey=${apiKey}&includeNutrition=false.`
-  //   )
+  //   const url = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=apple&number=1&apiKey=${apiKey2}&includeNutrition=false.`;
+  //   fetch(url)
   //     .then((response) => response.json())
   //     .then((data) => setApiData(data));
-  // });
+  // }, []);
 
   return (
-    <ul>
+    <ul style={{ "list-style-type": "none" }}>
       {/* /Substitute recipecache for apiData */}
       {recipecache.map((recipe) => (
         <Recipe
