@@ -9,8 +9,10 @@ function App() {
 
   function handleClick(e) {
     const ingredient = e.currentTarget.getAttribute("ingredientName");
-    setSelectedIngredients(selectedIngredients.concat(ingredient));
-    setChipData(chipData.concat({ name: ingredient }));
+    if (!selectedIngredients.includes(ingredient)) {
+      setSelectedIngredients(selectedIngredients.concat(ingredient));
+      setChipData(chipData.concat({ name: ingredient }));
+    }
   }
 
   const handleDelete = (chipToDelete) => () => {
@@ -25,7 +27,7 @@ function App() {
         handleDelete={handleDelete}
         chipData={chipData}
       />
-      <RecipeScreen />
+      <RecipeScreen selectedIngredients={selectedIngredients} />
     </div>
   );
 }
