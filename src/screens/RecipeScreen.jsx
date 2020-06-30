@@ -1,7 +1,8 @@
 import React from "react";
+import RecipeList from "../components/RecipeList";
 
 const RecipeScreen = () => {
-  return <span>Recipe Screen</span>;
+  return <RecipeList />;
 };
 
 export default RecipeScreen;
