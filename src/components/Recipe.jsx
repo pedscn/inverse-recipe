@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from "react";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
@@ -6,7 +7,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import placeholderImage from "../placeholder-img.png";
 
 const useStyles = makeStyles({
   card: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 const Recipe = (props) => {
-  const { title } = props;
+  const { title, missingIngredients, thumbnail } = props;
   const classes = useStyles();
   return (
     <li>
@@ -32,14 +32,14 @@ const Recipe = (props) => {
           <CardMedia
             className={classes.img}
             component="img"
-            image={placeholderImage}
+            image={thumbnail}
             title="Contemplative Reptile"
           />
           <CardContent className={classes.cardContent}>
             <Typography variant="h5">{title}</Typography>
-            {/* <Typography variant="body2" color="textSecondary" component="p">
-              {directions}
-            </Typography> */}
+            <Typography variant="body2" color="textSecondary" component="p">
+              Missing Ingredients: {missingIngredients}
+            </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
@@ -49,7 +49,12 @@ const Recipe = (props) => {
 
 Recipe.propTypes = {
   title: PropTypes.string.isRequired,
-  //   directions: PropTypes.string.isRequired,
+  missingIngredients: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string,
+};
+
+Recipe.defaultProps = {
+  thumbnail: "",
 };
 
 export default Recipe;
