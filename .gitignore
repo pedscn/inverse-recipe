@@ -140,3 +140,6 @@ sketch
 
 recipedb.json
 src/placeholder-img.png
+.vscode/launch.json
+src/reccipecache.json
+src/config.js
