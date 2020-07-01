@@ -6,6 +6,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import Chip from "@material-ui/core/Chip";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -26,8 +27,23 @@ const useStyles = makeStyles({
 });
 
 const Recipe = (props) => {
-  const { title, missingIngredients, thumbnail } = props;
+  const {
+    title,
+    missingIngredients,
+    thumbnail,
+    usedIngredients,
+    searchedIngredients,
+  } = props;
   const classes = useStyles();
+
+  const mappedMissingIngredients = missingIngredients.map((ingredient) => (
+    <Chip label={ingredient.name} color="secondary" />
+  ));
+
+  const mappedUsedIngredients = usedIngredients.map((ingredient) => (
+    <Chip label={ingredient.name} color="primary" />
+  ));
+
   return (
     <li>
       <Card className={classes.card}>
@@ -40,8 +56,14 @@ const Recipe = (props) => {
           />
           <CardContent className={classes.cardContent}>
             <Typography variant="h5">{title}</Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Missing Ingredients: {missingIngredients}
+            <Typography variant="body1" color="textSecondary">
+              Searched Ingredients: {searchedIngredients}
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+              Used Ingredients: {mappedUsedIngredients}
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+              Missing Ingredients: {mappedMissingIngredients}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -52,8 +74,10 @@ const Recipe = (props) => {
 
 Recipe.propTypes = {
   title: PropTypes.string.isRequired,
-  missingIngredients: PropTypes.string.isRequired,
+  missingIngredients: PropTypes.instanceOf(Array).isRequired,
   thumbnail: PropTypes.string,
+  usedIngredients: PropTypes.instanceOf(Array).isRequired,
+  searchedIngredients: PropTypes.instanceOf(Array).isRequired,
 };
 
 Recipe.defaultProps = {
