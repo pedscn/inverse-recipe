@@ -6,8 +6,9 @@ import IngredientScreen from "./screens/IngredientScreen";
 function App() {
   const [chipData, setChipData] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [searchedIngredients, setSearchedIngredients] = useState([]);
 
-  function handleClick(e) {
+  function handleIngredientClick(e) {
     const ingredient = e.currentTarget.getAttribute("ingredientName");
     if (!selectedIngredients.includes(ingredient)) {
       setSelectedIngredients(selectedIngredients.concat(ingredient));
@@ -15,19 +16,30 @@ function App() {
     }
   }
 
-  const handleDelete = (chipToDelete) => () => {
+  function handleSearchButtonClick() {
+    setSearchedIngredients(selectedIngredients);
+  }
+
+  const handleDelete = (ingredientToDelete) => () => {
     setChipData((chips) =>
-      chips.filter((chip) => chip.name !== chipToDelete.name)
+      chips.filter((chip) => chip.name !== ingredientToDelete.name)
+    );
+    setSelectedIngredients(
+      selectedIngredients.filter((item) => item !== ingredientToDelete.name)
     );
   };
+
   return (
     <div className="App">
       <IngredientScreen
-        handleClick={handleClick}
+        handleClick={handleIngredientClick}
         handleDelete={handleDelete}
         chipData={chipData}
       />
-      <RecipeScreen selectedIngredients={selectedIngredients} />
+      <RecipeScreen
+        handleSearchButtonClick={handleSearchButtonClick}
+        searchedIngredients={searchedIngredients}
+      />
     </div>
   );
 }
