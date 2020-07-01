@@ -32,13 +32,23 @@ const Recipe = (props) => {
     missingIngredients,
     thumbnail,
     usedIngredients,
-    searchedIngredients,
+    // searchedIngredients,
   } = props;
   const classes = useStyles();
 
-  const mappedMissingIngredients = missingIngredients.map((ingredient) => (
-    <Chip label={ingredient.name} color="secondary" />
-  ));
+  const mappedMissingIngredients = () => {
+    let missingIngredientsFormatted = missingIngredients.map(
+      (ingredient) => ingredient.name
+    );
+    if (missingIngredients.length > 3) {
+      const extraIngredientNum = missingIngredients.length - 3;
+      missingIngredientsFormatted = missingIngredientsFormatted.splice(0, 3);
+      missingIngredientsFormatted.push(`+ ${extraIngredientNum} more`);
+    }
+    return missingIngredientsFormatted.map((ingredientName) => (
+      <Chip label={ingredientName} color="secondary" />
+    ));
+  };
 
   const mappedUsedIngredients = usedIngredients.map((ingredient) => (
     <Chip label={ingredient.name} color="primary" />
@@ -57,13 +67,10 @@ const Recipe = (props) => {
           <CardContent className={classes.cardContent}>
             <Typography variant="h5">{title}</Typography>
             <Typography variant="body1" color="textSecondary">
-              Searched Ingredients: {searchedIngredients}
-            </Typography>
-            <Typography variant="body1" color="textSecondary">
               Used Ingredients: {mappedUsedIngredients}
             </Typography>
             <Typography variant="body1" color="textSecondary">
-              Missing Ingredients: {mappedMissingIngredients}
+              Missing Ingredients: {mappedMissingIngredients()}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -77,6 +84,7 @@ Recipe.propTypes = {
   missingIngredients: PropTypes.instanceOf(Array).isRequired,
   thumbnail: PropTypes.string,
   usedIngredients: PropTypes.instanceOf(Array).isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
   searchedIngredients: PropTypes.instanceOf(Array).isRequired,
 };
 
