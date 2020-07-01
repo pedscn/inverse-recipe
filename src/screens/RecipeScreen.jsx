@@ -1,18 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
 import RecipeList from "../components/RecipeList";
 
 const RecipeScreen = (props) => {
-  const { selectedIngredients } = props;
-  return <RecipeList selectedIngredients={selectedIngredients} />;
+  const { searchedIngredients, handleSearchButtonClick } = props;
+  return (
+    <div>
+      <Button
+        onClick={handleSearchButtonClick}
+        variant="contained"
+        color="primary"
+      >
+        Search
+      </Button>
+      <RecipeList searchedIngredients={searchedIngredients} />
+    </div>
+  );
 };
 
 RecipeScreen.propTypes = {
-  selectedIngredients: PropTypes.instanceOf(Array),
+  searchedIngredients: PropTypes.instanceOf(Array),
+  handleSearchButtonClick: PropTypes.func.isRequired,
 };
 
 RecipeScreen.defaultProps = {
-  selectedIngredients: [],
+  searchedIngredients: [],
 };
 
 export default RecipeScreen;
