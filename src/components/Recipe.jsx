@@ -24,6 +24,9 @@ const useStyles = makeStyles({
     float: "left",
     "text-align": "left",
   },
+  chip: {
+    margin: "2px",
+  },
 });
 
 const Recipe = (props) => {
@@ -46,12 +49,12 @@ const Recipe = (props) => {
       missingIngredientsFormatted.push(`+ ${extraIngredientNum} more`);
     }
     return missingIngredientsFormatted.map((ingredientName) => (
-      <Chip label={ingredientName} color="secondary" />
+      <Chip label={ingredientName} className={classes.chip} color="secondary" />
     ));
   };
 
   const mappedUsedIngredients = usedIngredients.map((ingredient) => (
-    <Chip label={ingredient.name} color="primary" />
+    <Chip label={ingredient.name} color="primary" className={classes.chip} />
   ));
 
   return (

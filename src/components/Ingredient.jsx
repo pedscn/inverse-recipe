@@ -12,6 +12,12 @@ const useStyles = makeStyles({
   card: {
     maxWidth: 200,
     maxHeight: 200,
+    margin: "5px",
+    padding: "5px",
+  },
+  image: {
+    width: "200px",
+    height: "135px",
   },
 });
 

@@ -10,7 +10,7 @@ const RecipeScreen = (props) => {
       <Button
         onClick={handleSearchButtonClick}
         variant="contained"
-        color="primary"
+        style={{ backgroundColor: "#C8E6C9" }}
       >
         Search
       </Button>
