@@ -138,8 +138,5 @@ sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,react,node
 
-recipedb.json
-src/placeholder-img.png
 .vscode/launch.json
-src/reccipecache.json
 src/config.js

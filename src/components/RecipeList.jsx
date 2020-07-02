@@ -3,7 +3,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Recipe from "./Recipe";
-import recipecache from "../reccipecache.json";
 import { apiKey } from "../config";
 
 const useStyles = makeStyles((theme) => ({
