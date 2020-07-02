@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
+import Typography from "@material-ui/core/Typography";
 import RecipeScreen from "./screens/RecipeScreen";
 import IngredientScreen from "./screens/IngredientScreen";
 
 function App() {
+  document.body.style = "background: #388E3C";
   const [chipData, setChipData] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [searchedIngredients, setSearchedIngredients] = useState([]);
@@ -31,6 +33,13 @@ function App() {
 
   return (
     <div className="App">
+      <Typography
+        variant="h3"
+        style={{ color: "white", margin: "20px" }}
+        gutterBottom
+      >
+        Select Ingredients
+      </Typography>
       <IngredientScreen
         handleClick={handleIngredientClick}
         handleDelete={handleDelete}
