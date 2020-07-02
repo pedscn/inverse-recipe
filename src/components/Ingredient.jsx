@@ -6,7 +6,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import placeholderImage from "../placeholder-img.png";
+// import placeholderImage from "../placeholder-img.png";
 
 const useStyles = makeStyles({
   card: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 
 const Ingredient = (props) => {
   const classes = useStyles();
-  const { ingredientName, onClick } = props;
+  const { ingredientName, onClick, ingredientImage } = props;
   return (
     <Card
       className={classes.card}
@@ -25,7 +25,11 @@ const Ingredient = (props) => {
       onClick={onClick}
     >
       <CardActionArea>
-        <CardMedia component="img" image={placeholderImage} />
+        <CardMedia
+          className={classes.image}
+          component="img"
+          image={ingredientImage}
+        />
         <CardContent>
           <Typography gutterBottom variant="h6">
             {ingredientName}
@@ -38,6 +42,7 @@ const Ingredient = (props) => {
 
 Ingredient.propTypes = {
   ingredientName: PropTypes.string.isRequired,
+  ingredientImage: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
