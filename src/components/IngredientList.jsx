@@ -16,7 +16,11 @@ const useStyles = makeStyles({
 const IngredientList = (props) => {
   const classes = useStyles();
   const ingredientMappedList = ingredientListJson.map((ingredient) => (
-    <Ingredient ingredientName={ingredient.name} onClick={props.onClick} />
+    <Ingredient
+      ingredientName={ingredient.name}
+      ingredientImage={ingredient.imgurl}
+      onClick={props.onClick}
+    />
   ));
   return <div className={classes.flexContainer}>{ingredientMappedList}</div>;
 };
